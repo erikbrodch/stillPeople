@@ -1,12 +1,11 @@
 <html>
 
 <head>
-  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="style.css">
   <script src="angular/angular.min.js"></script>
-  <script src="angular-ui-router/release/angular-ui-router.js"></script>
 </head>
 
 <body ng-app="steelPeople" ng-controller="MainCtrl">
@@ -15,10 +14,10 @@
     <section>
         <div class="row">
             <div class="col-sm-12">
-                    <form>
+                    <form ng-submit="stillPerson()">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="enter ng-rock">
-                            <button type="button" class="btn btn-primary btn-lg btn-block">Steal Mother-Fucker</button>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="enter ng-rock" ng-model="url">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">Steal Mother-Fucker</button>
                         </div>
                     </form>
             </div>
@@ -28,12 +27,12 @@
         <div class="row">
             <div class="col-sm-3 col-md-3" ng-repeat="person in allPeople">
                 <div class="thumbnail">
-                <img src="{{person.picture}}">
+                <img ng-src="{{person.picture}}">
                 <div class="caption">
                     <h3>{{person.name}}</h3>
                     <p>origin: {{person.origin}}</p>
                     <p>stolen from: {{person.stolenFrom}}</p>
-                    <p>stolen by: {{person.stolenBy}}</p>
+                    <p ng-style="stolenBy(person)" ng-show="showStolen(person)">stolen by: {{person.stolenBy}}</p>
                 </div>
                 </div>
             </div>
